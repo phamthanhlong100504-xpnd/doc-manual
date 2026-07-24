@@ -48,6 +48,14 @@ Monitor consumer lag.
 
 Use Schema Registry for shared events.
 
+### KAFKA-011
+
+Configuration classes defining custom Kafka listener container factories MUST include `@EnableKafka` to ensure Spring Kafka scans and activates `@KafkaListener` consumer beans.
+
+### KAFKA-012
+
+Event DTO classes passed through Kafka topics SHOULD use standard Java classes (with Lombok `@Data`, `@NoArgsConstructor`, `@AllArgsConstructor`) rather than plain Java Records to prevent Jackson deserialization issues when header-less `JsonDeserializer` is configured.
+
 ---
 
 ## MUST NOT

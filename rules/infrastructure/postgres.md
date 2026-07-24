@@ -40,6 +40,10 @@ Use transactions for write operations.
 
 Use UTC for all timestamps.
 
+### POSTGRES-009
+
+When interacting with `JSONB` columns marked `NOT NULL`, application entities MUST initialize fields with a valid JSON string (e.g. `"{}"`) to avoid `DataIntegrityViolationException` from null constraint violations on insert.
+
 ---
 
 ## MUST NOT

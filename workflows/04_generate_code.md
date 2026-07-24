@@ -92,12 +92,28 @@ Read all rule files listed in the Rule Files section above.
 Before writing any code, understand
 
 - Layer boundaries from `clean-architecture.md` (rules `CA-001` to `CA-044`)
-- Package structure from `structure.md` (rules `STRUCTURE-001` to `STRUCTURE-025`)
+- Package structure from `structure.md` (rules `STRUCTURE-001` to `STRUCTURE-027`)
 - Java coding standards from `java.md` (rules `JAVA-001` to `JAVA-030`)
 - Persistence standards from `persistence.md` (rules `PERSIST-001` to `PERSIST-028a`)
 - Naming conventions from `04_naming.md` (rules `NAME-001` to `NAME-031`)
 
 ---
+
+### Step 0.5 — Determine Base Package (MANDATORY)
+
+Before generating ANY code, determine the project's base package:
+
+1. Read `build.gradle` → extract `group` (e.g., `com.dts`)
+2. Read `settings.gradle` → extract `rootProject.name` (e.g., `media`)
+3. Base package = `{group}.{rootProject.name}` (e.g., `com.dts.media`)
+
+If `build.gradle` is not found, read `pom.xml` → extract `groupId` + `artifactId`.
+
+**NEVER use `com.example` as the base package.** (rule `STRUCTURE-027`)
+
+Verify by checking the existing main application class location under `src/main/java/`.
+
+
 
 ### Step 1 — Review API Blueprint
 

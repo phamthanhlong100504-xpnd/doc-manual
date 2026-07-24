@@ -92,6 +92,14 @@ Keep entity relationships explicit.
 
 Use cascading only when ownership exists.
 
+### PERSIST-034
+
+When mapping PostgreSQL `JSONB` columns in JPA Entities, MUST annotate the Java field with `@org.hibernate.annotations.JdbcTypeCode(org.hibernate.type.SqlTypes.JSON)` to prevent PostgreSQL type mismatch errors (`character varying` vs `jsonb`).
+
+### PERSIST-035
+
+When application code assigns UUIDs manually prior to `repository.save()`, MUST NOT annotate the `@Id` field with `@GeneratedValue(strategy = GenerationType.UUID)`. Otherwise, Hibernate will generate a new UUID during save and override the application-assigned ID, breaking foreign key relationships across associated entities.
+
 ---
 
 ## MUST NOT
