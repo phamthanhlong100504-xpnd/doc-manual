@@ -14,7 +14,7 @@ Generate projects following the standard package structure and architectural bou
 
 ```text
 src/main/java
-└── com.example.project
+└── {group}.{artifact}          ← Xác định từ build.gradle/pom.xml
     ├── api
     │   ├── controller
     │   ├── form
@@ -42,6 +42,11 @@ src/main/java
     │
     └── XxxApplication.java
 ```
+
+> **Cách xác định `{group}.{artifact}`**:
+> - Gradle: `group` trong `build.gradle` + `rootProject.name` trong `settings.gradle`
+> - Maven: `groupId` + `artifactId` trong `pom.xml`
+> - Ví dụ: `group = 'com.dts'`, `rootProject.name = 'media'` → base package = `com.dts.media`
 
 ---
 
@@ -353,6 +358,14 @@ Do not expose Entities through APIs.
 ### STRUCTURE-025
 
 Do not mix infrastructure code with business logic.
+
+### STRUCTURE-026
+
+MUST read `build.gradle` (or `pom.xml`) and `settings.gradle` to determine the base package BEFORE generating any code. The base package is `{group}.{artifact}` (e.g., `com.dts.media`).
+
+### STRUCTURE-027
+
+MUST NOT use `com.example` as the base package. Always derive the real base package from the project build file.
 
 ---
 

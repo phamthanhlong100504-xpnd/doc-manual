@@ -85,6 +85,13 @@ Output: Requirement Summary
 
 ---
 
+### Step 1.5 — Check Prerequisites
+- Đọc `application.properties` để xác nhận `spring.kafka.bootstrap-servers` tồn tại.
+- Kiểm tra bảng `flyfly_schema_history` có migration cho các bảng `storages`, `medias`, `upload_sessions`, `upload_policies`.
+- Query bảng `storages` để chắc chắn có ít nhất một bản ghi `is_default = true`.
+- Query bảng `upload_policies` để có ít nhất một policy cho `target_type` sẽ được sử dụng.
+- Nếu bất kỳ mục nào không thỏa, **STOP** và báo lỗi chi tiết cho người dùng.
+
 ### Step 2 — Generate API Blueprint
 
 Execute Generate Blueprint Workflow (`03_generate_blueprint.md`).

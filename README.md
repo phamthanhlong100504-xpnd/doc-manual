@@ -38,12 +38,56 @@ Bộ quy trình này giúp Agent phối hợp nhịp nhàng với bộ quy tắc
 10. **Tài Liệu Hóa (`09_generate_documentation.md`)**: Tạo tài liệu kỹ thuật khớp 100% với code thực tế.
 11. **Thiết Kế Kiến Trúc (`10_design_architecture.md`)**: Thiết kế module/service và đánh giá rủi ro kiến trúc.
 12. **Phát Triển Tính Năng Khép Kín (`11_feature_development.md`)**: Bộ điều phối (Coordinator) chạy xuyên suốt từ Phân tích yêu cầu → Viết Blueprint → Sinh code → Viết Test → Review.
+13. **Lựa chọn Quy Trình (`13_select_workflow.md`)**: Phân tích yêu cầu người dùng và hướng dẫn chọn workflow phù hợp nhất để xử lý.
+14. **Sinh DB Schema (`14_generate_db_schema.md`)**: Sinh file SQL schema PostgreSQL từ yêu cầu nghiệp vụ, tuân thủ `DB-SCHEMA-xxx`. Output lưu tại `docs/db/`.
 
 ---
 
-## 3. Cách Sử Dụng Dành Cho Lập Trình Viên
+## 3. Thư mục `docs/` và `plan/` (Project-specific Output)
+
+Ngoài `.agents/` (repo chung — tái sử dụng cho nhiều dự án), mỗi dự án cụ thể cần tạo các thư mục ngang cấp với `.agents/` để lưu các sản phẩm thiết kế:
+
+```
+<project-root>/
+├── .agents/          ← Repo chung (rules, workflows) — TÁI SỬ DỤNG
+├── docs/             ← Riêng cho từng dự án
+│   ├── api-blueprint/  ← API Blueprint files
+│   └── db/             ← SQL schema files
+├── plan/             ← Riêng cho từng dự án — Implementation Plans
+```
+
+*   **`docs/api-blueprint/`**: Chứa các file Markdown API Blueprint được sinh bởi workflow `03_generate_blueprint`.
+*   **`docs/db/`**: Chứa các file `.sql` schema được sinh bởi workflow `14_generate_db_schema`.
+*   **`plan/`**: Chứa các Implementation Plans đã được phê duyệt.
+
+---
+
+## 4. Quy tắc lưu Plan
+
+Khi một Implementation Plan được người dùng **phê duyệt**, agent PHẢI tự động lưu bản copy vào thư mục `plan/` của dự án.
+
+### Format tên file
+
+```
+DD-MM-YYYY-HH-mm-<mô-tả-ngắn>.md
+```
+
+Ví dụ: `20-07-2026-15-20-tai-cau-truc-package.md`
+
+### Quy tắc
+
+- **PHẢI** lưu plan ngay sau khi người dùng phê duyệt, trước khi bắt đầu thực hiện.
+- **PHẢI** dùng timestamp tại thời điểm phê duyệt (múi giờ local của người dùng).
+- **PHẢI** dùng tiếng Việt không dấu cho phần mô tả ngắn, phân cách bằng dấu gạch ngang.
+- **KHÔNG** xoá plan cũ — luôn giữ lại lịch sử.
+
+---
+
+## 5. Cách Sử Dụng Dành Cho Lập Trình Viên
 
 Khi bạn trò chuyện với AI Coding Assistant trong workspace này:
 1.  **Tự động nhận diện:** Agent sẽ tự động phát hiện thư mục `.agents/` này làm Workspace Customizations Root và tải các quy tắc.
 2.  **Kích hoạt Workflow:** Bạn có thể yêu cầu Agent chạy một workflow cụ thể bằng cách gõ tên hoặc gọi lệnh (ví dụ: *"Hãy dùng workflow 11_feature_development để phát triển tính năng X"*).
 3.  **Tuân thủ quy chuẩn:** Agent sẽ luôn thực hiện **Step 0 — Load Rules** của mỗi workflow để đọc các file quy tắc trước khi tạo ra bất kỳ thay đổi nào trên code của bạn.
+4.  **Lưu Plan tự động:** Khi plan được phê duyệt, agent sẽ tự động lưu vào `plan/` trước khi bắt tay vào thực hiện.
+
