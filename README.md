@@ -83,7 +83,83 @@ Ví dụ: `20-07-2026-15-20-tai-cau-truc-package.md`
 
 ---
 
-## 5. Cách Sử Dụng Dành Cho Lập Trình Viên
+## 5. Cài Đặt Vào Project (Git Submodule)
+
+Repo này được thiết kế để **tái sử dụng** cho nhiều dự án. Mỗi project sẽ import repo này vào thư mục `.agents/` dưới dạng **Git Submodule**.
+
+### 🚀 Cách 1: Chạy script tự động
+
+**Linux / macOS / Git Bash (Windows):**
+```bash
+# Chạy từ thư mục gốc project đích
+curl -sSL https://raw.githubusercontent.com/phamthanhlong100504-xpnd/doc-manual/main/scripts/setup.sh | bash
+
+# Hoặc nếu đã clone repo này:
+bash path/to/doc-manual/scripts/setup.sh
+```
+
+**Windows PowerShell:**
+```powershell
+# Chạy từ thư mục gốc project đích
+.\path\to\doc-manual\scripts\setup.ps1
+
+# Với URL tùy chỉnh:
+.\path\to\doc-manual\scripts\setup.ps1 -RepoUrl "https://github.com/phamthanhlong100504-xpnd/doc-manual.git"
+```
+
+### 🔧 Cách 2: Lệnh thủ công
+
+```bash
+# 1. Thêm submodule
+cd /path/to/your-project
+git submodule add -b main https://github.com/phamthanhlong100504-xpnd/doc-manual.git .agents
+
+# 2. Commit
+git add .gitmodules .agents
+git commit -m "chore: add AI-Coding agents submodule"
+```
+
+### 📦 Clone project có submodule
+
+```bash
+# Lần đầu clone (bao gồm submodule)
+git clone --recurse-submodules https://github.com/your-org/your-project.git
+
+# Nếu đã clone rồi mà chưa có .agents/
+git submodule init && git submodule update
+```
+
+### 🔄 Cập nhật lên bản mới nhất
+
+**Script tự động:**
+```bash
+# Linux / macOS / Git Bash
+bash .agents/scripts/update.sh
+```
+```powershell
+# Windows PowerShell
+.\.agents\scripts\update.ps1
+```
+
+**Lệnh thủ công:**
+```bash
+git submodule update --remote .agents
+git add .agents
+git commit -m "chore: update AI-Coding agents"
+```
+
+### 📌 Checkout version cụ thể
+
+```bash
+bash .agents/scripts/update.sh --version v1.2.0
+```
+```powershell
+.\.agents\scripts\update.ps1 -Version "v1.2.0"
+```
+
+---
+
+## 6. Cách Sử Dụng Dành Cho Lập Trình Viên
 
 Khi bạn trò chuyện với AI Coding Assistant trong workspace này:
 1.  **Tự động nhận diện:** Agent sẽ tự động phát hiện thư mục `.agents/` này làm Workspace Customizations Root và tải các quy tắc.
