@@ -145,8 +145,8 @@ POST /createOrder
 Good
 
 ```
-GET /users
-POST /orders
+GET /api/v1/user-service/users
+POST /api/v1/order-service/orders
 ```
 
 ---
@@ -219,15 +219,16 @@ Support gRPC for internal communication.
 
 # Resource Naming
 
+All API endpoints MUST follow the format: `/api/{version}/{service}/{object}`
+
 Good
 
 ```
-/users
-/orders
-/products
-/media
-/questions
-/exams
+/api/v1/user-service/users
+/api/v1/order-service/orders
+/api/v1/media-service/media
+/api/v1/content-builder/questions
+/api/v1/content-builder/learning-programs
 ```
 
 Bad
@@ -362,7 +363,7 @@ GET /users?sort=name,asc
 Preferred
 
 ```
-/api/v1/users
+/api/v1/content-builder/questions
 ```
 
 ---
