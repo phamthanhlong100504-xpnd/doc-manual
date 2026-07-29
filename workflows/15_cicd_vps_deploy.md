@@ -54,18 +54,18 @@ RUN ./gradlew bootJar --no-daemon -x test
 # ============================
 # Stage 2: Runtime
 # ============================
-FROM eclipse-temurin:${JAVA_VERSION:-21}-jre AS runtime
+FROM ibm-semeru-runtimes:open-${JAVA_VERSION:-21}-jre AS runtime
 WORKDIR /app
 
-# Create non-root user for security
-RUN groupadd --system appgroup && useradd --system --gid appgroup appuser
+# Create non-root user for security (Standard Linux)
+RUN groupadd -r dts && useradd -r -g dts -s /bin/false dts
 
 # Copy JAR from builder stage
 COPY --from=builder /app/build/libs/*.jar app.jar
 # (If Maven, copy /app/target/*.jar)
 
-RUN chown appuser:appgroup app.jar
-USER appuser
+RUN chown dts:dts app.jar
+USER dts
 
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
@@ -79,13 +79,13 @@ services:
     container_name: <service-name>
     restart: unless-stopped
     ports: ["<host-port>:8080"]
-    mem_limit: 384m
+    mem_limit: 200m
     environment:
-      JAVA_TOOL_OPTIONS: "-Xms64m -Xmx256m -XX:+UseContainerSupport"
+      JAVA_TOOL_OPTIONS: "-Xms64m -Xmx128m -Xquickstart"
       SPRING_DATASOURCE_URL: jdbc:postgresql://dts-postgres:5432/<db-name>
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
-      SPRING_KAFKA_BOOTSTRAP-SERVERS: dts-kafka:9092
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: dts-kafka:9092
     networks: [dts-network]
 
 networks:
