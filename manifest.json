@@ -18,7 +18,8 @@
             "rules/global/09_documentation.md",
             "rules/global/10_testing.md",
             "rules/global/11_performance.md",
-            "rules/global/12_observability.md"
+            "rules/global/12_observability.md",
+            "config/dts/environment/ports.md"
         ],
         "architecture": [
             "rules/architecture/clean-architecture.md",
