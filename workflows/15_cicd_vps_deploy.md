@@ -30,16 +30,43 @@ If project structure deviates: STOP & require:
 
 ### Dockerfile (Root)
 ```dockerfile
-# Builder (Gradle: COPY gradlew build.gradle settings.gradle ./ && ./gradlew bootJar -x test)
-# Builder (Maven: COPY .mvn/ mvnw pom.xml ./ && ./mvnw package -DskipTests)
-FROM eclipse-temurin:21-jdk AS builder
+# ============================
+# Stage 1: Build
+# ============================
+FROM eclipse-temurin:${JAVA_VERSION:-21}-jdk AS builder
 WORKDIR /app
-COPY . .
-RUN ./gradlew bootJar -x test # OR: ./mvnw package -DskipTests
 
-FROM eclipse-temurin:21-jre AS runtime
+# Copy wrapper and config to cache dependencies
+COPY gradle/wrapper/ gradle/wrapper/
+COPY gradlew .
+COPY build.gradle settings.gradle ./
+# (If Maven, copy .mvn/, mvnw, pom.xml instead)
+
+# Download dependencies (Cache this layer)
+RUN chmod +x gradlew && ./gradlew dependencies --no-daemon
+# (If Maven, run ./mvnw dependency:go-offline)
+
+# Copy source code and build
+COPY src/ src/
+RUN ./gradlew bootJar --no-daemon -x test
+# (If Maven, run ./mvnw package -B -DskipTests)
+
+# ============================
+# Stage 2: Runtime
+# ============================
+FROM eclipse-temurin:${JAVA_VERSION:-21}-jre AS runtime
 WORKDIR /app
-COPY --from=builder /app/build/libs/*.jar app.jar # Maven: /app/target/*.jar
+
+# Create non-root user for security
+RUN groupadd --system appgroup && useradd --system --gid appgroup appuser
+
+# Copy JAR from builder stage
+COPY --from=builder /app/build/libs/*.jar app.jar
+# (If Maven, copy /app/target/*.jar)
+
+RUN chown appuser:appgroup app.jar
+USER appuser
+
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
 ```
@@ -52,7 +79,9 @@ services:
     container_name: <service-name>
     restart: unless-stopped
     ports: ["<host-port>:8080"]
+    mem_limit: 384m
     environment:
+      JAVA_TOOL_OPTIONS: "-Xms64m -Xmx256m -XX:+UseContainerSupport"
       SPRING_DATASOURCE_URL: jdbc:postgresql://dts-postgres:5432/<db-name>
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
@@ -125,6 +154,7 @@ jobs:
             mv -f docker-compose.prod.yml docker-compose.yml
             docker compose pull
             docker compose up -d
+            docker image prune -a -f
 ```
 
 ---
