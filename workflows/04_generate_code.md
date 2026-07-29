@@ -113,7 +113,11 @@ If `build.gradle` is not found, read `pom.xml` → extract `groupId` + `artifact
 
 Verify by checking the existing main application class location under `src/main/java/`.
 
+### Step 0.6 — Apply Standard Security & Tracing (MANDATORY)
 
+Before writing any business code, ensure the standard security and tracing templates are applied. 
+Read `rules/technology/spring-boot-security.md` and copy the 5 required template files from `.agents/rules/templates/java/security/` into the service's `config` package.
+This ensures every service has JWT Authentication and MDC Trace ID configured by default.
 
 ### Step 1 — Review API Blueprint
 
