@@ -20,6 +20,11 @@ public class XxxController {
 
     private final XxxService xxxService;
 
+    @PostMapping
+    @PreAuthorize("hasAuthority('PERM_xxx:create')")
+    public XxxResponse create(...) {
+        // ...
+    }
 }
 ```
 
@@ -77,23 +82,27 @@ Return appropriate HTTP status codes.
 
 Keep controllers thin.
 
+### CONTROLLER-008
+
+Secure all endpoints using `@PreAuthorize("hasAuthority('PERM_<permission_name>')")` based on the required permissions in the API Blueprint.
+
 ---
 
 ## MUST NOT
 
-### CONTROLLER-008
+### CONTROLLER-009
 
 Do not access repositories directly.
 
-### CONTROLLER-009
+### CONTROLLER-010
 
 Do not implement business logic.
 
-### CONTROLLER-010
+### CONTROLLER-011
 
 Do not expose entities.
 
-### CONTROLLER-011
+### CONTROLLER-012
 
 Do not perform manual object mapping.
 
@@ -105,3 +114,4 @@ Do not perform manual object mapping.
 - [ ] DTO
 - [ ] Validation
 - [ ] Service Only
+- [ ] Endpoint Security (@PreAuthorize)
