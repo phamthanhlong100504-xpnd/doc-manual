@@ -28,6 +28,8 @@ spring:
 When writing `docker-compose.prod.yml`:
 - **mem_limit:** Set to `200m` (or maximum `320m` for Kafka-heavy services like media).
 - **JAVA_TOOL_OPTIONS:** Must include `-Xms64m -Xmx128m -Xquickstart`.
+  > [!WARNING]
+  > **Lưu ý (Trường hợp bất khả kháng):** Hiện tại cờ `-Xquickstart` trên OpenJ9 có thể gây lỗi tăng vọt CPU (>80%) do JIT compiler bị quá tải trong môi trường VPS cực nhỏ. Khi gặp tình trạng này, giải pháp chữa cháy bắt buộc là đổi sang: `-Xms64m -Xmx128m -XX:+UseSerialGC -XX:MaxMetaspaceSize=128m -Xss512k`. Đây chỉ là phương án bất khả kháng, không phải chủ đích thiết kế kiến trúc ban đầu.
 - **Environment Variables:** Use underscores `_`, NEVER hyphens `-` (e.g. use `SPRING_KAFKA_BOOTSTRAP_SERVERS`, not `SPRING_KAFKA_BOOTSTRAP-SERVERS`).
 
 ## 3. Dockerfile
