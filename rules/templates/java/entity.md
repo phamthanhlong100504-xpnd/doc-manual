@@ -103,6 +103,14 @@ Do not inject Spring Beans.
 
 Do not access repositories or services.
 
+### PERSIST-028a
+
+Do not use `@Data` on JPA entities.
+
+### PERSIST-029
+
+Always use `@Builder.Default` for fields that have default initializations (e.g., `private Boolean isActive = true;`) to prevent Lombok from overriding them with `null`.
+
 ### ENTITY-012
 
 Do not use entities as Request or Response objects.

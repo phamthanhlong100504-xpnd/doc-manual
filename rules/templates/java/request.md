@@ -89,6 +89,10 @@ Do not inject Spring Beans.
 
 Do not expose entities.
 
+### REQUEST-010
+
+Always use `@Builder.Default` for fields that have default initializations (e.g., `private Status status = Status.DRAFT;`) to prevent Lombok from overriding them with `null`.
+
 ---
 
 # Checklist

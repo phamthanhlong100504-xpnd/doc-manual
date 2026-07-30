@@ -54,6 +54,10 @@ Authenticate every protected request.
 
 Authorize every protected operation.
 
+### SEC-006a
+
+Verify resource ownership. For any UPDATE or DELETE operation on a user-owned resource, explicitly verify that the resource's `createdBy` field matches the current authenticated `userId`. Throw `AccessDeniedException` if they do not match, even if the user has the correct Role/Permission.
+
 ### SEC-007
 
 Hash passwords using approved algorithms.
