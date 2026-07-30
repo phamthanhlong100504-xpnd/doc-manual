@@ -58,6 +58,10 @@ Authorize every protected operation.
 
 Verify resource ownership. For any UPDATE or DELETE operation on a user-owned resource, explicitly verify that the resource's `createdBy` field matches the current authenticated `userId`. Throw `AccessDeniedException` if they do not match, even if the user has the correct Role/Permission.
 
+### SEC-006b
+
+When introducing a new domain entity or resource that requires authorization (e.g., `chapters`, `learning-programs`), you MUST create a Flyway migration script in the `identity-service` repository. This script must insert the standard CRUD permissions for that resource into the `permissions` table and assign them to the `ROLE_ADMIN` role (or other appropriate roles) in the `role_permissions` table. This ensures the IAM system is aware of the new permissions so they can be granted via JWT tokens.
+
 ### SEC-007
 
 Hash passwords using approved algorithms.
@@ -105,6 +109,10 @@ Keep dependencies updated.
 ### SEC-018
 
 Validate JWT tokens.
+
+### SEC-018a
+
+Gracefully handle legacy JWT subjects. If `claims.getSubject()` returns a username instead of a UUID (due to older Identity Service versions), the `JwtProvider` MUST fallback to generating a deterministic UUID from the username (e.g., using `UUID.nameUUIDFromBytes()`). It MUST NOT throw an unhandled `IllegalArgumentException`, which would break the authentication chain and result in a 403 Forbidden error.
 
 ### SEC-019
 
