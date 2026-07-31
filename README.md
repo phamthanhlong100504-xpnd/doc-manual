@@ -8,6 +8,11 @@ Thư mục này chứa các thiết lập tùy chỉnh (Customizations) dành ch
 
 Thư mục `.agents/` được tổ chức thành 2 phần chính:
 
+### `/config/` (Cấu Hình Chung)
+Chứa các thiết lập và cấu hình dùng chung cho toàn hệ thống:
+*   **`dts/environment/ports.md`**: Quy hoạch và cấp phát Port cho các microservices.
+*   **`dts/environment/jwt.md`**: Thiết lập bảo mật, cấu trúc payload JWT và phân quyền hệ thống.
+
 ### `/rules/` (Bộ Quy Tắc)
 Chứa các quy tắc chuẩn hóa code và thiết kế hệ thống, phân chia theo các nhóm công nghệ và kiến trúc:
 *   **`architecture/`**: Định nghĩa chuẩn kiến trúc (Clean Architecture, DDD, Event-driven, Microservices, Modular Monolith).
@@ -18,7 +23,7 @@ Chứa các quy tắc chuẩn hóa code và thiết kế hệ thống, phân chi
 *   **`templates/`**: Bản mẫu (Template) cấu trúc package và các class chuẩn (Controller, Service, Entity, Mapper...).
 
 ### `/workflows/` (Quy Trình Làm Việc)
-Chứa 13 quy trình hướng dẫn chi tiết từng bước cho Agent khi thực hiện các tác vụ phát triển phần mềm cụ thể.
+Chứa 15 quy trình hướng dẫn chi tiết từng bước cho Agent khi thực hiện các tác vụ phát triển phần mềm cụ thể.
 
 ---
 
@@ -40,6 +45,7 @@ Bộ quy trình này giúp Agent phối hợp nhịp nhàng với bộ quy tắc
 12. **Phát Triển Tính Năng Khép Kín (`11_feature_development.md`)**: Bộ điều phối (Coordinator) chạy xuyên suốt từ Phân tích yêu cầu → Viết Blueprint → Sinh code → Viết Test → Review.
 13. **Lựa chọn Quy Trình (`13_select_workflow.md`)**: Phân tích yêu cầu người dùng và hướng dẫn chọn workflow phù hợp nhất để xử lý.
 14. **Sinh DB Schema (`14_generate_db_schema.md`)**: Sinh file SQL schema PostgreSQL từ yêu cầu nghiệp vụ, tuân thủ `DB-SCHEMA-xxx`. Output lưu tại `docs/db/`.
+15. **Triển Khai CI/CD & VPS (`15_cicd_vps_deploy.md`)**: Hỗ trợ thiết lập CI/CD bằng GitHub Actions để build và deploy Docker Image tự động lên VPS.
 
 ---
 
