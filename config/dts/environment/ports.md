@@ -11,6 +11,7 @@ This configuration dictates the standardized ports and environment setup for all
 - **CMS Request Service (`cms-request-service`)**: 8085 (Dự kiến)
 - **Common Info Service (`common-info-service`)**: 8086 (Dự kiến)
 - **Practice Service (`practice-service`)**: 8087
+- **Examination Service (`examination`)**: 8088
 
 ## External / Infrastructure Services
 - **PostgreSQL (`postgres`)**: 5434
