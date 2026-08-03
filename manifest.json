@@ -19,7 +19,8 @@
             "rules/global/10_testing.md",
             "rules/global/11_performance.md",
             "rules/global/12_observability.md",
-            "config/dts/environment/ports.md"
+            "config/dts/environment/ports.md",
+            "config/dts/environment/jwt.md"
         ],
         "architecture": [
             "rules/architecture/clean-architecture.md",
@@ -114,7 +115,8 @@
         "workflows/11_feature_development.md",
         "workflows/12_bug_fix.md",
         "workflows/13_select_workflow.md",
-        "workflows/14_generate_db_schema.md"
+        "workflows/14_generate_db_schema.md",
+        "workflows/15_cicd_vps_deploy.md"
     ],
 
     "scripts": {
