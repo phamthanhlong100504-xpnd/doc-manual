@@ -6,11 +6,12 @@ This configuration dictates the standardized ports and environment setup for all
 - **Media Service (`media-service`)**: 8080
 - **Identity Service (`identity-service`)**: 8081
 - **Content Builder (`content-builder`)**: 8082
-- **API Gateway (`gateway`)**: 8083 (Dự kiến)
+- **API Gateway (`gateway`)**: 8888
 - **LMS Core (`lms-core`)**: 8084 (Dự kiến)
 - **CMS Request Service (`cms-request-service`)**: 8085 (Dự kiến)
 - **Common Info Service (`common-info-service`)**: 8086 (Dự kiến)
 - **Practice Service (`practice-service`)**: 8087
+- **Examination Service (`examination-service`)**: 8088
 
 ## External / Infrastructure Services
 - **PostgreSQL (`postgres`)**: 5434
