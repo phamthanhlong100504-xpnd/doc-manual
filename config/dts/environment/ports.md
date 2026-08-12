@@ -6,7 +6,7 @@ trigger: model_decision
 
 # Environment Variables and Port Allocations
 
-This configuration dictates the standardized ports and environment setup for all `dts` and related microservices on the VPS (`103.75.182.249`). To prevent port collisions, all services must adhere to this port configuration.
+This configuration dictates the standardized ports and environment setup for all `dts` and related microservices on the VPS. To prevent port collisions, all services must adhere to this port configuration.
 
 ## Standardized Ports
 - **Media Service (`media-service`)**: 8080
