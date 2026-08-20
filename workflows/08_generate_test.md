@@ -1,5 +1,7 @@
 ---
 description: Generate comprehensive tests for Java Spring Boot applications.
+name: 08_generate_test
+trigger: always_on
 ---
 
 # Generate Test Workflow

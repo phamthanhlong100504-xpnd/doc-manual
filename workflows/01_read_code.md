@@ -1,5 +1,7 @@
 ---
 description: Understand the existing codebase before making any modification.
+name: 01_read_code
+trigger: always_on
 ---
 
 # Read Code Workflow

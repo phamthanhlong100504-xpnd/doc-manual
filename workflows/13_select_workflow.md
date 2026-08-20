@@ -1,5 +1,7 @@
 ---
 description: Guide the agent to analyze the user request and recommend the most appropriate workflow to follow.
+name: 13_select_workflow
+trigger: always_on
 ---
 
 # Select Workflow

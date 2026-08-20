@@ -1,5 +1,7 @@
 ---
 description: Design or improve software architecture based on business requirements.
+name: 10_design_architecture
+trigger: always_on
 ---
 
 # Design Architecture Workflow

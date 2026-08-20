@@ -1,5 +1,7 @@
 ---
 description: Rules and templates for Spring Security, JWT, and MDC Trace ID implementation.
+name: spring-boot-security
+trigger: model_decision
 ---
 
 # Spring Security & Trace ID Standards

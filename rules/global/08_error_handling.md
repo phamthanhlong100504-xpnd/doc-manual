@@ -1,5 +1,6 @@
 ---
 trigger: always_on
+name: 08_error_handling
 ---
 
 # Error Handling

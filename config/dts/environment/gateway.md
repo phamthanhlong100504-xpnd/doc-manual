@@ -1,3 +1,9 @@
+---
+name: gateway
+description: Rules and guidelines for gateway
+trigger: model_decision
+---
+
 # API Gateway Configuration & Patterns
 
 Tài liệu này ghi nhận lại các thiết kế cốt lõi của API Gateway trong hệ sinh thái DTS nhằm làm kim chỉ nam cho các lần nâng cấp hoặc phát triển service mới.

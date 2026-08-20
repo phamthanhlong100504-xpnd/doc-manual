@@ -1,5 +1,7 @@
 ---
 description: Generate a complete API Blueprint from business requirements.
+name: 03_generate_blueprint
+trigger: always_on
 ---
 
 # Generate Blueprint Workflow

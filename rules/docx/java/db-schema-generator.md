@@ -1,5 +1,6 @@
 ---
 trigger: always_on
+name: db-schema-generator
 ---
 
 # DB Schema Generation Rule

@@ -1,5 +1,7 @@
 ---
 description: Analyze business requirements and convert them into a complete implementation-ready requirement summary.
+name: 02_understand_requirement
+trigger: always_on
 ---
 
 # Understand Requirement Workflow

@@ -1,5 +1,7 @@
 ---
 description: Improve code quality while preserving business behavior.
+name: 06_refactor_code
+trigger: always_on
 ---
 
 # Refactor Code Workflow

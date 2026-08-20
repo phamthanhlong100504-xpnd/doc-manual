@@ -1,5 +1,6 @@
 ---
 trigger: always_on
+name: controller
 ---
 
 # Controller Template

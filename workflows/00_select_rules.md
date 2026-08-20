@@ -1,5 +1,7 @@
 ---
 description: Determine and load the minimum required rule set before performing any task.
+name: 00_select_rules
+trigger: always_on
 ---
 
 # Select Rules Workflow

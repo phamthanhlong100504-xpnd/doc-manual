@@ -1,5 +1,7 @@
 ---
 description: Generate accurate and maintainable technical documentation.
+name: 09_generate_documentation
+trigger: always_on
 ---
 
 # Generate Documentation Workflow

@@ -1,5 +1,6 @@
 ---
 trigger: always_on
+name: 04_naming
 ---
 
 # Naming

@@ -1,5 +1,6 @@
 ---
 trigger: always_on
+name: modular-monolith
 ---
 
 # Modular Monolith

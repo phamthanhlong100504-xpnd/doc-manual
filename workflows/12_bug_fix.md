@@ -1,5 +1,7 @@
 ---
 description: Resolve software defects safely while preserving existing business behavior.
+name: 12_bug_fix
+trigger: always_on
 ---
 
 # Bug Fix Workflow

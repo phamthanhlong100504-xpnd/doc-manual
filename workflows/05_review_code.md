@@ -1,5 +1,7 @@
 ---
 description: Review existing code for correctness, maintainability, architecture compliance, and rule violations.
+name: 05_review_code
+trigger: always_on
 ---
 
 # Review Code Workflow

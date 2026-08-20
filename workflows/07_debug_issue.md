@@ -1,5 +1,7 @@
 ---
 description: Identify the root cause of defects, exceptions, or unexpected behavior.
+name: 07_debug_issue
+trigger: always_on
 ---
 
 # Debug Issue Workflow

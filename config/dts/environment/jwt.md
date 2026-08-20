@@ -1,3 +1,9 @@
+---
+name: jwt
+description: Rules and guidelines for jwt
+trigger: model_decision
+---
+
 # JWT Security Configuration
 
 ## Standard Configuration

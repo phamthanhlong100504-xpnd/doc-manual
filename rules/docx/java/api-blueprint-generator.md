@@ -1,5 +1,6 @@
 ---
 trigger: always_on
+name: api-blueprint-generator
 ---
 
 # API Blueprint Generation Rule

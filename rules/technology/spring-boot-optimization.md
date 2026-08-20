@@ -1,5 +1,7 @@
 ---
 description: Rules for optimizing Spring Boot microservices for low-resource environments (VPS).
+name: spring-boot-optimization
+trigger: model_decision
 ---
 
 # Spring Boot Resource Optimization

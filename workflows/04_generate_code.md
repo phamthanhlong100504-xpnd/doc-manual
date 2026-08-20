@@ -1,5 +1,7 @@
 ---
 description: Generate Java Spring Boot source code from an approved API Blueprint.
+name: 04_generate_code
+trigger: always_on
 ---
 
 # Generate Code Workflow

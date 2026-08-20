@@ -1,5 +1,7 @@
 ---
 description: Deploy Spring Boot (Gradle/Maven) to VPS via GHCR & SSH.
+name: 15_cicd_vps_deploy
+trigger: always_on
 ---
 
 # CI/CD VPS Deploy Workflow

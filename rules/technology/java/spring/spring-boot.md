@@ -1,5 +1,6 @@
 ---
 trigger: always_on
+name: spring-boot
 ---
 
 # Spring Boot

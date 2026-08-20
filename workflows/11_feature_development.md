@@ -1,5 +1,7 @@
 ---
 description: Develop a complete feature from business requirements to tested code.
+name: 11_feature_development
+trigger: always_on
 ---
 
 # Feature Development Workflow

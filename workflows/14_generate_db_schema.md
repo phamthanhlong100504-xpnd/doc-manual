@@ -1,5 +1,7 @@
 ---
 description: Generate a complete PostgreSQL database schema from business requirements.
+name: 14_generate_db_schema
+trigger: always_on
 ---
 
 # Generate DB Schema Workflow

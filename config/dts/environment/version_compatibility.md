@@ -1,5 +1,7 @@
 ---
 description: Build tools and framework version compatibility constraints.
+name: version_compatibility
+trigger: model_decision
 ---
 
 # Version Compatibility Constraints
