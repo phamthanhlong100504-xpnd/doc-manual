@@ -103,6 +103,23 @@ Unit tests for functions MUST apply Basis Path Testing (Tom McCabe). Calculate C
 
 Input data analysis MUST be performed at each node. Apply Equivalence Partitioning (for Happy Cases), Boundary Value Analysis (for Edge Cases), and test Negative Cases (e.g., incorrect types, empty, out of bounds).
 
+### TEST-033
+
+Gradle projects MUST configure `testLogging` to emit `passed`, `skipped`, and `failed` events in the console for CI/CD integration.
+```groovy
+tasks.named('test') {
+	useJUnitPlatform()
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
+}
+```
+
+### TEST-034
+
+CI/CD deployment pipelines (e.g., GitHub Actions `deploy.yml`) MUST execute the test suite (e.g., `./gradlew test`) before building the final artifact.
+They MUST also integrate a Test Reporter Action (e.g., `EnricoMi/publish-unit-test-result-action`) and upload the HTML report as an artifact to provide a visual summary of test results on the CI/CD interface.
+
 ---
 
 ## MUST NOT

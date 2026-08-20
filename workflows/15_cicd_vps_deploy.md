@@ -105,6 +105,8 @@ on:
 permissions:
   contents: read
   packages: write
+  checks: write
+  pull-requests: read
 
 env:
   IMAGE: ghcr.io/${{ github.repository_owner }}/<service-name>
@@ -120,12 +122,22 @@ jobs:
 
       # Gradle:
       - uses: gradle/actions/setup-gradle@v4
-      - run: chmod +x gradlew && ./gradlew clean bootJar
+      - name: Run Tests & Build
+        run: chmod +x gradlew && ./gradlew clean test bootJar
 
-      # Maven (use if Maven):
-      # - uses: actions/cache@v4
-      #   with: { path: ~/.m2/repository, key: '${{ runner.os }}-maven-${{ hashFiles("**/pom.xml") }}' }
-      # - run: mvn clean package -B -DskipTests
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: "build/test-results/**/*.xml"
+
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gradle-test-report
+          path: build/reports/tests/test/
+          retention-days: 7
 
       - uses: docker/login-action@v3
         with:
