@@ -74,15 +74,23 @@ Identify
 
 ---
 
-### Step 2 — Identify Test Scenarios
+### Step 2 — Control Flow Graph & Complexity Analysis
 
-Generate
+Analyze the logical flow of the target function to satisfy TEST-031:
 
-- Happy Path
-- Validation failures
-- Exception cases
-- Edge Cases
-- Boundary Cases
+- Draw/list the Control Flow Graph (CFG) nodes and edges.
+- Calculate Cyclomatic Complexity `V(G) = P + 1`.
+- List exactly `V(G)` Basis Paths that cover all independent execution paths.
+
+---
+
+### Step 2.5 — Data Input & Edge Case Mapping
+
+For each Basis Path identified, define the specific input data required to trigger it to satisfy TEST-032:
+
+- **Happy Cases**: Use Equivalence Partitioning for expected inputs.
+- **Edge Cases**: Use Boundary Value Analysis for limits.
+- **Negative Cases**: Nulls, empty strings, incorrect types, strings exceeding max length.
 
 ---
 
@@ -98,27 +106,25 @@ Based on the target component and `structure.md`
 
 ### Step 4 — Generate Test Cases
 
-Follow testing rules from `testing.md`.
+Follow testing rules from `testing.md`. Ensure that each generated test method explicitly states which Basis Path it covers.
 
-Ensure
+Ensure:
 
-- Independent
-- Repeatable
-- Readable
-- No `@Data` on test fixtures with entities per `PERSIST-028a`
-- Test naming follows `NAME-xxx` conventions
+- Independent and repeatable execution.
+- No `@Data` on test fixtures with entities per `PERSIST-028a`.
+- Test naming follows `NAME-xxx` conventions and clearly indicates the scenario/path.
+- Data input boundaries are clearly mocked or provided.
 
 ---
 
 ### Step 5 — Review Coverage
 
-Check
+Check that the generated tests satisfy TEST-030 and TEST-031:
 
-- Business Rules covered
-- Validation covered
-- Exceptions covered
-- Branches covered
-- Critical Paths covered
+- Are there at least `V(G)` tests corresponding to the Basis Paths?
+- Are all decision branches (True and False) covered (Coverage Level 2)?
+- Are all boundary values and negative inputs handled?
+- Are business rules and exceptions covered?
 
 ---
 

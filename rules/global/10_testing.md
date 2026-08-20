@@ -91,6 +91,18 @@ Security-sensitive functionality MUST be tested.
 
 API contracts MUST be verified.
 
+### TEST-030
+
+Tests MUST achieve Coverage Level 2 (Branch Coverage). Every decision node (if, switch, loop) MUST have its TRUE and FALSE paths executed at least once.
+
+### TEST-031
+
+Unit tests for functions MUST apply Basis Path Testing (Tom McCabe). Calculate Cyclomatic Complexity `V(G) = P + 1` (where P is the number of predicate nodes) and ensure `C` basic paths are independently tested.
+
+### TEST-032
+
+Input data analysis MUST be performed at each node. Apply Equivalence Partitioning (for Happy Cases), Boundary Value Analysis (for Edge Cases), and test Negative Cases (e.g., incorrect types, empty, out of bounds).
+
 ---
 
 ## MUST NOT
