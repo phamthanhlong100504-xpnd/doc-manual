@@ -23,8 +23,8 @@ This configuration dictates the standardized ports and environment setup for all
 - **PostgreSQL (`postgres`)**: 5434
 - **MinIO (`media-minio`)**: 9000 (API), 9001 (Console)
 - **Redis (`redis`)**: 6379
-- **Kafka (`media-kafka`)**: 9092
-- **Zookeeper (`media-zookeeper`)**: 2181, 2888, 3888
+- **Kafka (`dts-kafka`)**: 9092
+- **Zookeeper (`dts-zookeeper`)**: 2181, 2888, 3888
 
 ## Rules
 - When generating code or deploying, ensure the `server.port` matches the list above.
