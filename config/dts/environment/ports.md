@@ -1,24 +1,29 @@
 # Environment Variables and Port Allocations
 
-This configuration dictates the standardized ports and environment setup for all `dts` and related microservices on the VPS (`103.75.182.249`). To prevent port collisions, all services must adhere to this port configuration.
+This configuration dictates the standardized ports and environment setup for all `dts` and related microservices on the new **2-VPS Architecture**.
+
+## Architecture Overview
+- **Infra VPS (`103.20.96.85`) - 4GB RAM**: Databases, Storage, Message Broker, Identity, Media, Frontend.
+- **App VPS (`103.20.96.56`) - 2GB RAM**: API Gateway and core application microservices.
 
 ## Standardized Ports
-- **Media Service (`media-service`)**: 8080
+### Infra VPS (`103.20.96.85`)
 - **Identity Service (`identity-service`)**: 8081
-- **Content Builder (`content-builder`)**: 8082
-- **API Gateway (`gateway`)**: 8888
-- **LMS Core (`lms-core`)**: 8084 (Dự kiến)
-- **CMS Request Service (`cms-request-service`)**: 8085 (Dự kiến)
-- **Common Info Service (`common-info-service`)**: 8086 (Dự kiến)
-- **Practice Service (`practice-service`)**: 8087
-- **Examination Service (`examination-service`)**: 8088
-
-## External / Infrastructure Services
+- **Media Service (`media-service`)**: 8080
+- **Frontend Website (`dts-frontend`)**: 3000
 - **PostgreSQL (`postgres`)**: 5434
 - **MinIO (`media-minio`)**: 9000 (API), 9001 (Console)
 - **Redis (`redis`)**: 6379
-- **Kafka (`media-kafka`)**: 9092
+- **Kafka (`kafka`)**: 9092
 - **Zookeeper (`media-zookeeper`)**: 2181, 2888, 3888
+
+### App VPS (`103.20.96.56`)
+- **API Gateway (`gateway`)**: 8888
+- **Practice Service (`practice-service`)**: 8087
+- **Examination Service (`examination-service`)**: 8088
+- **Progress Service (`progress-service`)**: 8083
+- **Result Service (`result-service`)**: 8086
+- **Content Builder (`content-builder`)**: 8082
 
 ## Rules
 - When generating code or deploying, ensure the `server.port` matches the list above.
